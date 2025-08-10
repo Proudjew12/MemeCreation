@@ -1,0 +1,26 @@
+.main-nav--simple {
+    position: static;
+    inset: auto;
+    width: auto;
+    background: transparent;
+    overflow: visible;
+}
+
+.main-nav--simple .main-nav-list a {
+    display: inline-block;
+    width: auto;
+    height: auto;
+    text-align: left;
+    color: inherit;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.main-nav--simple li+li {
+    margin-left: 32px;
+}
+
+.main-nav--simple a:hover,
+.main-nav--simple a:focus {
+    text-decoration: underline;
+}
