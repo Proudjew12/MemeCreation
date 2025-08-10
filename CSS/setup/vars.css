@@ -1,0 +1,29 @@
+:root {
+    --clr-primary: #0a4283;
+    --clr-primary-light: #1260b8;
+    --clr-primary-dark: #062d5b;
+
+    --clr-secondary: #f39c12;
+    --clr-accent: #e74c3c;
+
+    --clr-bg: #ffffff;
+    --clr-bg-alt: #f4f4f4;
+
+    --clr-text: #222;
+    --clr-text-light: #666;
+    --clr-text-invert: #fff;
+
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 32px;
+    --space-xl: 64px;
+
+    --s: 600px;
+    --m: 890px;
+    --l: 1060px;
+
+    --transition-fast: 0.2s ease;
+    --transition-medium: 0.4s ease;
+    --transition-slow: 0.6s ease;
+}

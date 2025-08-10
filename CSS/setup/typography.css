@@ -1,0 +1,19 @@
+@font-face {
+    font-family: eurofurence;
+    src: url('/fonts/eurofurence/eurofurence-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: lato-bold;
+    src: url('/fonts/lato/Lato-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: lato-regular;
+    src: url('/fonts/lato/Lato-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: fa-brands-400;
+    src: url('/fonts/fa/fa-brands-400.woff2') format('woff2');
+}

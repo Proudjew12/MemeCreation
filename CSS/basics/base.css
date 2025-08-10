@@ -1,0 +1,63 @@
+/* Reset & global box-sizing */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Base typography */
+html {
+    font-family: lato-regular, sans-serif;
+    line-height: 1.25;
+    color: var(--clr-primary--1);
+    font-size: 16px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--clr-primary--2, #fff);
+}
+
+/* Images are responsive by default */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Links */
+a {
+    color: var(--clr-primary--3, blue);
+    text-decoration: none;
+}
+
+a:hover,
+a:focus {
+    text-decoration: underline;
+}
+
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0 0 1em;
+    text-transform: uppercase;
+    line-height: 1.2;
+}
+
+/* Paragraphs */
+p {
+    margin: 0 0 1em;
+}
+
+/* Lists reset */
+ul,
+ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
