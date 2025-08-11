@@ -1,0 +1,131 @@
+.meme-controls {
+    background: #3b3f46;
+    color: #e9edf2;
+    border-radius: 18px;
+    padding: 20px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, .25);
+    gap: 18px;
+    font-size: 15px;
+    height: 100%;
+}
+
+.control-head .control-input {
+    width: 100%;
+    background: #e9edf2;
+    color: #1f2937;
+    border-radius: 999px;
+    padding: 12px 16px;
+    font-weight: 700;
+    border: 1px solid rgba(0, 0, 0, .06);
+    box-shadow: inset 0 2px 0 rgba(255, 255, 255, .6), 0 2px 0 rgba(0, 0, 0, .12);
+}
+
+.meme-controls .control-row:nth-of-type(2),
+.meme-controls .control-row:nth-of-type(3) {
+    background: #11aa9e;
+    padding: 14px;
+    border-radius: 14px;
+    box-shadow: inset 0 3px 0 rgba(255, 255, 255, .25), 0 2px 0 rgba(0, 0, 0, .12);
+    gap: 12px;
+}
+
+.meme-controls .control-row:nth-of-type(1) button {
+    border-radius: 12px;
+    padding: 10px 12px;
+    border: 1px solid rgba(255, 255, 255, .06);
+    box-shadow: 0 3px 0 rgba(0, 0, 0, .25);
+    font-weight: 700;
+}
+
+#btn-move {
+    background: linear-gradient(#4fc3e7, #1f89a8);
+}
+
+#btn-add {
+    background: linear-gradient(#40d56a, #1e9b4b);
+}
+
+#btn-delete {
+    background: linear-gradient(#ff6b6b, #cf3b3b);
+}
+
+.meme-controls .control-row:nth-of-type(2) button,
+.meme-controls .control-row:nth-of-type(3) select {
+    background: #f3f6f8;
+    color: #1f2937;
+    border-radius: 10px;
+    padding: 8px 12px;
+    border: 1px solid rgba(0, 0, 0, .06);
+    box-shadow: 0 2px 0 rgba(0, 0, 0, .12);
+    font-weight: 800;
+}
+
+.meme-controls input[type="color"] {
+    width: 42px;
+    height: 36px;
+    border-radius: 10px;
+    padding: 0;
+    border: 1px solid rgba(0, 0, 0, .06);
+    box-shadow: 0 2px 0 rgba(0, 0, 0, .12);
+    background: #f3f6f8;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.meme-controls input[type="color"]::-webkit-color-swatch,
+.meme-controls input[type="color"]::-moz-color-swatch {
+    border: none;
+    border-radius: 8px;
+}
+
+.sticker-strip {
+    background: #fff;
+    border-radius: 999px;
+    padding: 10px 14px;
+    box-shadow: inset 0 2px 0 rgba(255, 255, 255, .5), 0 3px 0 rgba(0, 0, 0, .12);
+}
+
+.sticker-strip .sticker-btn {
+    background: transparent;
+    border: none;
+    font-size: 1.6rem;
+    line-height: 1;
+    margin-right: 10px;
+    transition: transform .15s ease, filter .15s ease;
+    filter: drop-shadow(0 2px 0 rgba(0, 0, 0, .15));
+}
+
+.sticker-strip .sticker-btn:hover {
+    transform: scale(1.12);
+}
+
+.actions button {
+    padding: 12px 18px;
+    border-radius: 12px;
+    font-weight: 800;
+    border: 1px solid rgba(255, 255, 255, .06);
+    box-shadow: 0 4px 0 rgba(0, 0, 0, .25);
+}
+
+#btn-share {
+    background: #1d9bf0;
+}
+
+#btn-share:hover {
+    background: #1480cc;
+}
+
+#btn-download {
+    background: #8b5cf6;
+}
+
+#btn-download:hover {
+    background: #7c3aed;
+}
+
+.meme-controls button:focus,
+.meme-controls select:focus,
+.meme-controls .control-input:focus {
+    outline: 2px solid rgba(255, 255, 255, .75);
+    outline-offset: 2px;
+}

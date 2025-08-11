@@ -2,16 +2,16 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BaseStart</title>
-    <link rel="stylesheet" href="CSS/styles.css">
+    <link rel="stylesheet" href="CSS/styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 </head>
 
 <body class="main-layout">
     <header class="main-header flex space-between align-center">
         <div class="logo">Logo</div>
-
         <nav class="main-nav main-nav--simple flex">
             <ul class="main-nav-list clean-list flex">
                 <li><a href="#">Gallery</a></li>
@@ -20,14 +20,78 @@
         </nav>
     </header>
 
-    <main></main>
+    <main class="main-layout">
+        <section class="cards-layout">
+            <article class="card">
+                <section class="meme-stage flex center">
+                    <div class="meme-board">
+                        <canvas id="meme-canvas" width="1080" height="1080"></canvas>
+                        <img id="meme-image" alt="" hidden>
+                    </div>
+                </section>
+
+                <aside class="meme-controls flex column">
+                    <div class="control-head">
+                        <input id="line-input" class="control-input" type="text" placeholder="CAN'T GET FIRED">
+                    </div>
+
+                    <div class="control-row flex align-center justify-center">
+                        <button id="btn-move" title="Move line up/down">↕</button>
+                        <button id="btn-add" title="Add line">＋</button>
+                        <button id="btn-delete" title="Delete line">🗑</button>
+                    </div>
+
+                    <div class="control-row flex align-center justify-center">
+                        <button id="btn-size-plus" title="Bigger">A+</button>
+                        <button id="btn-size-minus" title="Smaller">A−</button>
+                        <button id="btn-align-left" title="Align left">≡</button>
+                        <button id="btn-align-center" title="Align center">≡</button>
+                        <button id="btn-align-right" title="Align right">≡</button>
+                    </div>
+
+                    <div class="control-row flex align-center justify-center">
+                        <select id="font-family">
+                            <option value="impact" selected>IMPACT</option>
+                            <option value="lato-bold">Lato Bold</option>
+                            <option value="eurofurence">Eurofurence</option>
+                        </select>
+
+                        <select id="stroke-size" title="Stroke size">
+                            <option value="0">None</option>
+                            <option value="2">S</option>
+                            <option value="4" selected>M</option>
+                            <option value="6">L</option>
+                        </select>
+
+                        <input id="fill-color" type="color" title="Fill color">
+
+                    </div>
+
+                    <div class="sticker-strip">
+                        <ul class="clean-list flex align-center">
+                            <li><button class="sticker-btn" data-sticker="troll">😜</button></li>
+                            <li><button class="sticker-btn" data-sticker="rage">😡</button></li>
+                            <li><button class="sticker-btn" data-sticker="cry">😭</button></li>
+                            <li><button class="sticker-btn" data-sticker="sleep">😴</button></li>
+                        </ul>
+                    </div>
+
+                    <div class="actions flex space-between align-center">
+                        <button id="btn-share">Share</button>
+                        <button id="btn-download">Download</button>
+                    </div>
+                </aside>
+            </article>
+        </section>
+    </main>
+
     <footer></footer>
 
     <script src="JS/Storage/localStorage.js"></script>
     <script src="JS/main-controller.js"></script>
     <script src="JS/Services/mainService.js"></script>
     <script src="JS/Services/utilService.js"></script>
+    <script src="https://kit.fontawesome.com/626cf0cfad.js" crossorigin="anonymous"></script>
 </body>
-
 
 </html>

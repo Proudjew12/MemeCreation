@@ -1,34 +1,31 @@
-/* Reset & global box-sizing */
 *,
 *::before,
 *::after {
     box-sizing: border-box;
 }
 
-/* Base typography */
 html {
     font-family: lato-regular, sans-serif;
     line-height: 1.25;
-    color: var(--clr-primary--1);
+    color: var(--clr-text);
     font-size: 16px;
 }
 
 body {
     margin: 0;
     padding: 0;
-    background-color: var(--clr-primary--2, #fff);
+    background: var(--clr-text);
+    background-image: var(--bg-gradient-dark);
 }
 
-/* Images are responsive by default */
 img {
     max-width: 100%;
     height: auto;
     display: block;
 }
 
-/* Links */
 a {
-    color: var(--clr-primary--3, blue);
+    color: var(--clr-primary, #0a4283);
     text-decoration: none;
 }
 
@@ -37,7 +34,6 @@ a:focus {
     text-decoration: underline;
 }
 
-/* Headings */
 h1,
 h2,
 h3,
@@ -49,12 +45,10 @@ h6 {
     line-height: 1.2;
 }
 
-/* Paragraphs */
 p {
     margin: 0 0 1em;
 }
 
-/* Lists reset */
 ul,
 ol {
     margin: 0;

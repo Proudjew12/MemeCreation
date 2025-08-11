@@ -23,7 +23,11 @@
     --m: 890px;
     --l: 1060px;
 
-    --transition-fast: 0.2s ease;
-    --transition-medium: 0.4s ease;
-    --transition-slow: 0.6s ease;
+    --transition-fast: .2s ease;
+    --transition-medium: .4s ease;
+    --transition-slow: .6s ease;
+
+    --bg-gradient-dark:
+        radial-gradient(circle at center, #2a2b30 0%, #1a1b1f 70%),
+        repeating-conic-gradient(rgba(255, 255, 255, .02) 0deg 10deg, transparent 10deg 20deg);
 }
