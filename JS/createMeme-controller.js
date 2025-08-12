@@ -10,15 +10,6 @@ function onInitMeme() {
 
     document.getElementById('btn-add')?.addEventListener('click', onAddLine)
     document.getElementById('btn-delete')?.addEventListener('click', onDeleteLine)
-    gElInput.addEventListener('input', onInputChange)
-
-    onRebuildOverlays()
-
-    gElBoard.addEventListener('click', (ev) => {
-        if (!ev.target.classList.contains('overlay-text')) {
-            onDeselectLine()
-        }
-    })
 
     document.getElementById('fill-color')
         .addEventListener('input', onColorChange)
@@ -32,6 +23,21 @@ function onInitMeme() {
     document.getElementById('btn-align-right')
         .addEventListener('click', () => onAlignChange('right'))
 
+    document.getElementById('btn-size-plus')
+        .addEventListener('click', () => onSizeChange(2))
+
+    document.getElementById('btn-size-minus')
+        .addEventListener('click', () => onSizeChange(-2))
+
+    gElInput.addEventListener('input', onInputChange)
+
+    onRebuildOverlays()
+
+    gElBoard.addEventListener('click', (ev) => {
+        if (!ev.target.classList.contains('overlay-text')) {
+            onDeselectLine()
+        }
+    })
 }
 
 function onAddLine() {
@@ -59,6 +65,7 @@ function onDeleteLine() {
         gElInput.focus()
     } else {
         gElInput.value = ''
+        disableSizeButtons()
     }
 }
 
@@ -91,8 +98,6 @@ function onCreateFloating(line, idx) {
     el.style.fontSize = line.size + 'px'
     el.style.textAlign = line.align || 'center'
 
-
-
     el.addEventListener('click', () => {
         onSelectLine(idx)
         gElInput.focus()
@@ -105,35 +110,29 @@ function onCreateFloating(line, idx) {
 
     gElBoard.appendChild(el)
     gOverlayEls[idx] = el
-
-    document.getElementById('btn-size-plus')
-        .addEventListener('click', () => onSizeChange(2))
-
-    document.getElementById('btn-size-minus')
-        .addEventListener('click', () => onSizeChange(-2))
-
-
-
 }
 
 function onSelectLine(idx) {
     setSelectedLineIdx(idx)
     const meme = getMeme()
+
     document.getElementById('fill-color').value = meme.lines[idx]?.color || '#ffffff'
     gElInput.value = meme.lines[idx]?.txt || ''
+
     gOverlayEls.forEach(el => el && (el.style.outline = 'none'))
     if (idx >= 0) {
         const el = gOverlayEls[idx]
         if (el) el.style.outline = '2px solid rgba(255,255,255,.65)'
+        enableSizeButtons()
     }
 }
+
 function onDeselectLine() {
     const meme = getMeme()
     meme.selectedLineIdx = -1
     gElInput.value = ''
     gOverlayEls.forEach(el => el && (el.style.outline = 'none'))
-
-
+    disableSizeButtons()
 }
 
 function onDragStart(ev, el, idx) {
@@ -204,6 +203,14 @@ function onAlignChange(align) {
     if (el) el.style.textAlign = align
 }
 
+function enableSizeButtons() {
+    document.getElementById('btn-size-plus').disabled = false
+    document.getElementById('btn-size-minus').disabled = false
+}
+
+function disableSizeButtons() {
+    document.getElementById('btn-size-plus').disabled = true
+    document.getElementById('btn-size-minus').disabled = true
+}
 
 window.onInitMeme = onInitMeme
-
