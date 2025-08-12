@@ -9,18 +9,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 </head>
 
-<body onload="onInitMeme()" qqqq class="main-layout">
+<body onload="onInitMeme()" class="main-layout">
     <header class="main-header flex space-between align-center">
         <div class="logo">Logo</div>
-        <nav class="main-nav main-nav--simple flex">
+        <nav class="main-nav main-nav--simple flex" aria-label="Main">
             <ul class="main-nav-list clean-list flex">
                 <li><a href="#">Gallery</a></li>
                 <li><a href="#">About</a></li>
             </ul>
         </nav>
     </header>
-
-
 
     <main class="main-layout">
         <section class="cards-layout">
@@ -32,38 +30,47 @@
                     </div>
                 </section>
 
-                <form id="text-form" action="">
+                <form id="text-form" action="" novalidate>
                     <aside class="meme-controls flex column">
                         <div class="control-head">
-                            <input id="line-input" class="control-input" type="text" placeholder="Type and press Enter">
+                            <input id="line-input" class="control-input" type="text" placeholder="Type and press ＋"
+                                autocomplete="off" aria-label="Meme text">
                         </div>
 
                         <div class="control-row flex align-center justify-center">
-                            <button type="button" id="btn-add" title="Add line">＋</button>
-                            <button type="button" id="btn-delete" title="Delete line">🗑</button>
+                            <button type="button" id="btn-add" title="Add line" aria-label="Add line">＋</button>
+                            <button type="button" id="btn-delete" title="Delete selected line"
+                                aria-label="Delete selected line">🗑</button>
                         </div>
 
                         <div class="control-row flex align-center justify-center">
-                            <button type="button" id="btn-size-plus" title="Bigger">A+</button>
-                            <button type="button" id="btn-size-minus" title="Smaller">A−</button>
-                            <button type="button" id="btn-align-left" title="Align left">⇚</button>
-                            <button type="button" id="btn-align-center" title="Align center">≡</button>
-                            <button type="button" id="btn-align-right" title="Align right">⇛</button>
+                            <button type="button" id="btn-size-plus" title="Increase text size"
+                                aria-label="Increase text size">A+</button>
+                            <button type="button" id="btn-size-minus" title="Decrease text size"
+                                aria-label="Decrease text size">A−</button>
+                            <button type="button" id="btn-align-left" title="Align left"
+                                aria-label="Align left">⇚</button>
+                            <button type="button" id="btn-align-center" title="Align center"
+                                aria-label="Align center">≡</button>
+                            <button type="button" id="btn-align-right" title="Align right"
+                                aria-label="Align right">⇛</button>
                         </div>
 
                         <div class="control-row flex align-center justify-center">
-                            <select id="font-family">
+                            <select id="font-family" aria-label="Font family">
                                 <option value="impact" selected>IMPACT</option>
                                 <option value="lato-bold">Lato Bold</option>
                                 <option value="eurofurence">Eurofurence</option>
                             </select>
 
-                            <input id="fill-color" type="color" title="Fill color">
+                            <input id="fill-color" type="color" title="Fill color" aria-label="Fill color"
+                                value="#ffffff">
                         </div>
 
                         <div class="actions flex space-between align-center">
-                            <button type="button" id="btn-share">Share</button>
-                            <button type="button" id="btn-download">Download</button>
+                            <button type="button" id="btn-share" title="Share" aria-label="Share">Share</button>
+                            <button type="button" id="btn-download" title="Download"
+                                aria-label="Download">Download</button>
                         </div>
                     </aside>
                 </form>
@@ -75,13 +82,10 @@
 
     <script src="JS/Storage/localStorage.js"></script>
     <script src="JS/Services/utilService.js"></script>
-
     <script src="JS/Services/createMemeServices.js"></script>
     <script src="JS/Services/gallaryServices.js"></script>
-
     <script src="JS/createMeme-controller.js"></script>
     <script src="JS/gallery-controller.js"></script>
-
 
     <script src="https://kit.fontawesome.com/626cf0cfad.js" crossorigin="anonymous"></script>
 </body>
