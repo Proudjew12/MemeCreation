@@ -17,7 +17,7 @@ function getMeme() {
 }
 
 function addLine(txt, color = 'red') {
-    const line = { txt, size: 20, color, x: 40, y: 40 }
+    const line = { txt, size: 20, color, align: 'center', x: 40, y: 40 }
     gMeme.lines.push(line)
     gMeme.selectedLineIdx = gMeme.lines.length - 1
     return line
@@ -48,6 +48,11 @@ function updateLineColor(color, idx = gMeme.selectedLineIdx) {
     if (!gMeme.lines[idx]) return
     gMeme.lines[idx].color = color
 }
+function updateLineSize(delta, idx = gMeme.selectedLineIdx) {
+    if (!gMeme.lines[idx]) return
+    gMeme.lines[idx].size = Math.max(8, gMeme.lines[idx].size + delta)
+}
+
 
 
 window.getMeme = getMeme
@@ -57,3 +62,4 @@ window.setSelectedLineIdx = setSelectedLineIdx
 window.updateLineTxt = updateLineTxt
 window.updateLinePos = updateLinePos
 window.updateLineColor = updateLineColor
+window.updateLineSize = updateLineSize

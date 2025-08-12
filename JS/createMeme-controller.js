@@ -23,6 +23,7 @@ function onInitMeme() {
     document.getElementById('fill-color')
         .addEventListener('input', onColorChange)
 
+
 }
 
 function onAddLine() {
@@ -79,6 +80,8 @@ function onCreateFloating(line, idx) {
     el.style.top = (typeof line.y === 'number' ? line.y : 40) + 'px'
     el.style.cursor = 'move'
     el.style.color = line.color
+    el.style.fontSize = line.size + 'px'
+
 
     el.addEventListener('click', () => {
         onSelectLine(idx)
@@ -92,6 +95,13 @@ function onCreateFloating(line, idx) {
 
     gElBoard.appendChild(el)
     gOverlayEls[idx] = el
+
+    document.getElementById('btn-size-plus')
+        .addEventListener('click', () => onSizeChange(2))
+
+    document.getElementById('btn-size-minus')
+        .addEventListener('click', () => onSizeChange(-2))
+
 }
 
 function onSelectLine(idx) {
@@ -110,6 +120,8 @@ function onDeselectLine() {
     meme.selectedLineIdx = -1
     gElInput.value = ''
     gOverlayEls.forEach(el => el && (el.style.outline = 'none'))
+
+
 }
 
 function onDragStart(ev, el, idx) {
@@ -156,6 +168,19 @@ function onColorChange(e) {
     const el = gOverlayEls[idx]
     if (el) el.style.color = color
 }
+
+function onSizeChange(delta) {
+    const meme = getMeme()
+    const idx = meme.selectedLineIdx
+
+    if (idx === -1 || !meme.lines[idx]) return
+
+    updateLineSize(delta, idx)
+
+    const el = gOverlayEls[idx]
+    if (el) el.style.fontSize = meme.lines[idx].size + 'px'
+}
+
 
 
 window.onInitMeme = onInitMeme
