@@ -1,15 +1,12 @@
 'use strict'
 
 var gImgs = [{ id: 1, url: 'img/1.jpg', keywords: ['funny', 'cat'] }]
+
 var gMeme = {
     selectedImgId: 5,
     selectedLineIdx: 0,
     lines: [
-        {
-            txt: 'I sometimes eat Falafel',
-            size: 20,
-            color: 'red'
-        }
+
     ]
 }
 
@@ -26,12 +23,31 @@ function addLine(txt) {
     return line
 }
 
+function removeLine(idx = gMeme.selectedLineIdx) {
+    if (!gMeme.lines.length) return
+    gMeme.lines.splice(idx, 1)
+    gMeme.selectedLineIdx = Math.max(0, Math.min(gMeme.selectedLineIdx, gMeme.lines.length - 1))
+}
+
+function setSelectedLineIdx(idx) {
+    if (idx >= 0 && idx < gMeme.lines.length) gMeme.selectedLineIdx = idx
+}
+
+function updateLineTxt(txt, idx = gMeme.selectedLineIdx) {
+    if (!gMeme.lines[idx]) return
+    gMeme.lines[idx].txt = txt
+}
+
 function updateLinePos(idx, x, y) {
     if (!gMeme.lines[idx]) return
     gMeme.lines[idx].x = x
     gMeme.lines[idx].y = y
 }
 
+
 window.getMeme = getMeme
 window.addLine = addLine
+window.removeLine = removeLine
+window.setSelectedLineIdx = setSelectedLineIdx
+window.updateLineTxt = updateLineTxt
 window.updateLinePos = updateLinePos

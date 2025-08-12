@@ -2,56 +2,107 @@
 
 let gElBoard, gElInput
 let gDrag = { isDown: false, startX: 0, startY: 0, el: null, lineIdx: -1 }
+let gOverlayEls = []
 
 function onInitMeme() {
     gElBoard = document.querySelector('.meme-board')
     gElInput = document.getElementById('line-input')
 
     document.getElementById('btn-add')?.addEventListener('click', onAddLine)
+    document.getElementById('btn-delete')?.addEventListener('click', onDeleteLine)
+    gElInput.addEventListener('input', onInputChange)
 
+    onRebuildOverlays()
+
+    gElBoard.addEventListener('click', (ev) => {
+        if (!ev.target.classList.contains('overlay-text')) {
+            onDeselectLine()
+        }
+    })
 }
 
 function onAddLine() {
     const txt = gElInput.value.trim()
     if (!txt) return
-    const line = addLine(txt)
-    const idx = getMeme().selectedLineIdx
-    onCreateFloating(line.txt, idx, line.x, line.y)
+    addLine(txt)
+    onRebuildOverlays()
+    onSelectLine(getMeme().selectedLineIdx)
+    gElInput.focus()
     gElInput.select()
 }
 
-function onCreateFloating(txt, idx, x = 40, y = 40) {
+function onDeleteLine() {
+    const meme = getMeme()
+    if (!meme.lines.length) return
+
+    const idx = meme.selectedLineIdx
+    removeLine(idx)
+
+    onRebuildOverlays()
+
+    if (meme.lines.length) {
+        onSelectLine(meme.selectedLineIdx)
+        gElInput.focus()
+    } else {
+        gElInput.value = ''
+    }
+}
+
+function onInputChange(e) {
+    const meme = getMeme()
+    if (!meme.lines.length) return
+    updateLineTxt(e.target.value, meme.selectedLineIdx)
+
+    const el = gOverlayEls[meme.selectedLineIdx]
+    if (el) el.textContent = e.target.value
+}
+
+function onRebuildOverlays() {
+    gOverlayEls.forEach(el => el && el.remove())
+    gOverlayEls = []
+
+    const meme = getMeme()
+    meme.lines.forEach((line, idx) => onCreateFloating(line, idx))
+}
+
+function onCreateFloating(line, idx) {
     const el = document.createElement('div')
     el.className = 'overlay-text'
-    el.textContent = txt
+    el.textContent = line.txt
     el.style.position = 'absolute'
-    el.style.left = x + 'px'
-    el.style.top = y + 'px'
+    el.style.left = (typeof line.x === 'number' ? line.x : 40) + 'px'
+    el.style.top = (typeof line.y === 'number' ? line.y : 40) + 'px'
     el.style.cursor = 'move'
 
+    el.addEventListener('click', () => {
+        onSelectLine(idx)
+        gElInput.focus()
+        gElInput.select()
+    })
 
     el.addEventListener('mousedown', (ev) => onDragStart(ev, el, idx))
     document.addEventListener('mousemove', onDragMove)
     document.addEventListener('mouseup', onDragEnd)
 
-
-    el.addEventListener('click', () => {
-        const meme = getMeme()
-        meme.selectedLineIdx = idx
-        gElInput.value = meme.lines[idx].txt
-        gElInput.focus()
-        gElInput.select()
-    })
-
-
-    gElInput.addEventListener('input', () => {
-        const meme = getMeme()
-        if (meme.selectedLineIdx !== idx) return
-        el.textContent = gElInput.value
-        meme.lines[idx].txt = gElInput.value
-    })
-
     gElBoard.appendChild(el)
+    gOverlayEls[idx] = el
+}
+
+function onSelectLine(idx) {
+    setSelectedLineIdx(idx)
+    const meme = getMeme()
+    gElInput.value = meme.lines[idx]?.txt || ''
+    gOverlayEls.forEach(el => el && (el.style.outline = 'none'))
+    if (idx >= 0) {
+        const el = gOverlayEls[idx]
+        if (el) el.style.outline = '2px solid rgba(255,255,255,.65)'
+    }
+}
+function onDeselectLine() {
+    const meme = getMeme()
+    meme.selectedLineIdx = -1
+    gElInput.value = ''
+    gOverlayEls.forEach(el => el && (el.style.outline = 'none'))
 }
 
 function onDragStart(ev, el, idx) {
@@ -60,6 +111,7 @@ function onDragStart(ev, el, idx) {
     gDrag.startY = ev.clientY - el.offsetTop
     gDrag.el = el
     gDrag.lineIdx = idx
+    onSelectLine(idx)
 }
 
 function onDragMove(ev) {
@@ -69,8 +121,10 @@ function onDragMove(ev) {
     let x = ev.clientX - gDrag.startX - boardRect.left
     let y = ev.clientY - gDrag.startY - boardRect.top
 
-    x = Math.max(0, Math.min(x, gElBoard.clientWidth - gDrag.el.offsetWidth))
-    y = Math.max(0, Math.min(y, gElBoard.clientHeight - gDrag.el.offsetHeight))
+    const maxX = gElBoard.clientWidth - gDrag.el.offsetWidth
+    const maxY = gElBoard.clientHeight - gDrag.el.offsetHeight
+    x = Math.max(0, Math.min(x, maxX))
+    y = Math.max(0, Math.min(y, maxY))
 
     gDrag.el.style.left = x + 'px'
     gDrag.el.style.top = y + 'px'
@@ -84,5 +138,4 @@ function onDragEnd() {
     gDrag.lineIdx = -1
 }
 
-
-function onRenderMeme() { }
+window.onInitMeme = onInitMeme
