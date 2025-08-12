@@ -53,6 +53,11 @@ function updateLineSize(delta, idx = gMeme.selectedLineIdx) {
     gMeme.lines[idx].size = Math.max(8, gMeme.lines[idx].size + delta)
 }
 
+function updateLineAlign(align, idx = gMeme.selectedLineIdx) {
+    if (!gMeme.lines[idx]) return
+    gMeme.lines[idx].align = align
+}
+
 
 
 window.getMeme = getMeme
@@ -63,3 +68,5 @@ window.updateLineTxt = updateLineTxt
 window.updateLinePos = updateLinePos
 window.updateLineColor = updateLineColor
 window.updateLineSize = updateLineSize
+window.updateLineAlign = updateLineAlign
+

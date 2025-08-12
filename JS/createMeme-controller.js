@@ -23,6 +23,14 @@ function onInitMeme() {
     document.getElementById('fill-color')
         .addEventListener('input', onColorChange)
 
+    document.getElementById('btn-align-left')
+        .addEventListener('click', () => onAlignChange('left'))
+
+    document.getElementById('btn-align-center')
+        .addEventListener('click', () => onAlignChange('center'))
+
+    document.getElementById('btn-align-right')
+        .addEventListener('click', () => onAlignChange('right'))
 
 }
 
@@ -81,6 +89,8 @@ function onCreateFloating(line, idx) {
     el.style.cursor = 'move'
     el.style.color = line.color
     el.style.fontSize = line.size + 'px'
+    el.style.textAlign = line.align || 'center'
+
 
 
     el.addEventListener('click', () => {
@@ -101,6 +111,8 @@ function onCreateFloating(line, idx) {
 
     document.getElementById('btn-size-minus')
         .addEventListener('click', () => onSizeChange(-2))
+
+
 
 }
 
@@ -181,6 +193,16 @@ function onSizeChange(delta) {
     if (el) el.style.fontSize = meme.lines[idx].size + 'px'
 }
 
+function onAlignChange(align) {
+    const meme = getMeme()
+    const idx = meme.selectedLineIdx
+    if (idx === -1 || !meme.lines[idx]) return
+
+    updateLineAlign(align, idx)
+
+    const el = gOverlayEls[idx]
+    if (el) el.style.textAlign = align
+}
 
 
 window.onInitMeme = onInitMeme
