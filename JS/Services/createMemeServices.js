@@ -16,21 +16,21 @@ function getMeme() {
     return gMeme
 }
 
-function addLine(txt, color = 'red') {
+function addLine(txt, color = 'red', font = 'impact') {
     const line = {
         txt,
         size: 20,
         color,
+        font,
         align: 'center',
-        font: 'impact',
         x: 40,
         y: 40
     }
-
     gMeme.lines.push(line)
     gMeme.selectedLineIdx = gMeme.lines.length - 1
     return line
 }
+
 
 
 function removeLine(idx = gMeme.selectedLineIdx) {

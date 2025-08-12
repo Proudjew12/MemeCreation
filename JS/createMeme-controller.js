@@ -48,7 +48,8 @@ function onAddLine() {
     const txt = gElInput.value.trim()
     if (!txt) return
     const color = document.getElementById('fill-color').value
-    addLine(txt, color)
+    const font = document.getElementById('font-family').value
+    addLine(txt, color, font)
     onRebuildOverlays()
     onSelectLine(getMeme().selectedLineIdx)
     gElInput.focus()
