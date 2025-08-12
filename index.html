@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 </head>
 
-<body class="main-layout">
+<body onload="onInitMeme()" qqqq class="main-layout">
     <header class="main-header flex space-between align-center">
         <div class="logo">Logo</div>
         <nav class="main-nav main-nav--simple flex">
@@ -19,6 +19,8 @@
             </ul>
         </nav>
     </header>
+
+
 
     <main class="main-layout">
         <section class="cards-layout">
@@ -30,57 +32,49 @@
                     </div>
                 </section>
 
-                <aside class="meme-controls flex column">
-                    <div class="control-head">
-                        <input id="line-input" class="control-input" type="text" placeholder="CAN'T GET FIRED">
-                    </div>
+                <form id="text-form" action="">
+                    <aside class="meme-controls flex column">
+                        <div class="control-head">
+                            <input id="line-input" class="control-input" type="text" placeholder="Type and press Enter">
+                        </div>
 
-                    <div class="control-row flex align-center justify-center">
-                        <button id="btn-move" title="Move line up/down">↕</button>
-                        <button id="btn-add" title="Add line">＋</button>
-                        <button id="btn-delete" title="Delete line">🗑</button>
-                    </div>
+                        <div class="control-row flex align-center justify-center">
+                            <button type="button" id="btn-move" title="Move line up/down">↕</button>
+                            <button type="button" id="btn-add" title="Add line">＋</button>
+                            <button type="button" id="btn-delete" title="Delete line">🗑</button>
+                        </div>
 
-                    <div class="control-row flex align-center justify-center">
-                        <button id="btn-size-plus" title="Bigger">A+</button>
-                        <button id="btn-size-minus" title="Smaller">A−</button>
-                        <button id="btn-align-left" title="Align left">≡</button>
-                        <button id="btn-align-center" title="Align center">≡</button>
-                        <button id="btn-align-right" title="Align right">≡</button>
-                    </div>
+                        <div class="control-row flex align-center justify-center">
+                            <button type="button" id="btn-size-plus" title="Bigger">A+</button>
+                            <button type="button" id="btn-size-minus" title="Smaller">A−</button>
+                            <button type="button" id="btn-align-left" title="Align left">≡</button>
+                            <button type="button" id="btn-align-center" title="Align center">≡</button>
+                            <button type="button" id="btn-align-right" title="Align right">≡</button>
+                        </div>
 
-                    <div class="control-row flex align-center justify-center">
-                        <select id="font-family">
-                            <option value="impact" selected>IMPACT</option>
-                            <option value="lato-bold">Lato Bold</option>
-                            <option value="eurofurence">Eurofurence</option>
-                        </select>
+                        <div class="control-row flex align-center justify-center">
+                            <select id="font-family">
+                                <option value="impact" selected>IMPACT</option>
+                                <option value="lato-bold">Lato Bold</option>
+                                <option value="eurofurence">Eurofurence</option>
+                            </select>
 
-                        <select id="stroke-size" title="Stroke size">
-                            <option value="0">None</option>
-                            <option value="2">S</option>
-                            <option value="4" selected>M</option>
-                            <option value="6">L</option>
-                        </select>
+                            <select id="stroke-size" title="Stroke size">
+                                <option value="0">None</option>
+                                <option value="2">S</option>
+                                <option value="4" selected>M</option>
+                                <option value="6">L</option>
+                            </select>
 
-                        <input id="fill-color" type="color" title="Fill color">
+                            <input id="fill-color" type="color" title="Fill color">
+                        </div>
 
-                    </div>
-
-                    <div class="sticker-strip">
-                        <ul class="clean-list flex align-center">
-                            <li><button class="sticker-btn" data-sticker="troll">😜</button></li>
-                            <li><button class="sticker-btn" data-sticker="rage">😡</button></li>
-                            <li><button class="sticker-btn" data-sticker="cry">😭</button></li>
-                            <li><button class="sticker-btn" data-sticker="sleep">😴</button></li>
-                        </ul>
-                    </div>
-
-                    <div class="actions flex space-between align-center">
-                        <button id="btn-share">Share</button>
-                        <button id="btn-download">Download</button>
-                    </div>
-                </aside>
+                        <div class="actions flex space-between align-center">
+                            <button type="button" id="btn-share">Share</button>
+                            <button type="button" id="btn-download">Download</button>
+                        </div>
+                    </aside>
+                </form>
             </article>
         </section>
     </main>
@@ -88,9 +82,15 @@
     <footer></footer>
 
     <script src="JS/Storage/localStorage.js"></script>
-    <script src="JS/main-controller.js"></script>
-    <script src="JS/Services/mainService.js"></script>
     <script src="JS/Services/utilService.js"></script>
+
+    <script src="JS/Services/createMemeServices.js"></script>
+    <script src="JS/Services/gallaryServices.js"></script>
+
+    <script src="JS/createMeme-controller.js"></script>
+    <script src="JS/gallery-controller.js"></script>
+
+
     <script src="https://kit.fontawesome.com/626cf0cfad.js" crossorigin="anonymous"></script>
 </body>
 
