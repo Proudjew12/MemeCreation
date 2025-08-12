@@ -19,12 +19,17 @@ function onInitMeme() {
             onDeselectLine()
         }
     })
+
+    document.getElementById('fill-color')
+        .addEventListener('input', onColorChange)
+
 }
 
 function onAddLine() {
     const txt = gElInput.value.trim()
     if (!txt) return
-    addLine(txt)
+    const color = document.getElementById('fill-color').value
+    addLine(txt, color)
     onRebuildOverlays()
     onSelectLine(getMeme().selectedLineIdx)
     gElInput.focus()
@@ -73,6 +78,7 @@ function onCreateFloating(line, idx) {
     el.style.left = (typeof line.x === 'number' ? line.x : 40) + 'px'
     el.style.top = (typeof line.y === 'number' ? line.y : 40) + 'px'
     el.style.cursor = 'move'
+    el.style.color = line.color
 
     el.addEventListener('click', () => {
         onSelectLine(idx)
@@ -91,6 +97,7 @@ function onCreateFloating(line, idx) {
 function onSelectLine(idx) {
     setSelectedLineIdx(idx)
     const meme = getMeme()
+    document.getElementById('fill-color').value = meme.lines[idx]?.color || '#ffffff'
     gElInput.value = meme.lines[idx]?.txt || ''
     gOverlayEls.forEach(el => el && (el.style.outline = 'none'))
     if (idx >= 0) {
@@ -138,4 +145,18 @@ function onDragEnd() {
     gDrag.lineIdx = -1
 }
 
+function onColorChange(e) {
+    const meme = getMeme()
+    const color = e.target.value
+    const idx = meme.selectedLineIdx
+    if (idx === -1) return
+
+    updateLineColor(color, idx)
+
+    const el = gOverlayEls[idx]
+    if (el) el.style.color = color
+}
+
+
 window.onInitMeme = onInitMeme
+

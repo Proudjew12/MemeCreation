@@ -16,12 +16,13 @@ function getMeme() {
     return gMeme
 }
 
-function addLine(txt) {
-    const line = { txt, size: 20, color: 'red', x: 40, y: 40 }
+function addLine(txt, color = 'red') {
+    const line = { txt, size: 20, color, x: 40, y: 40 }
     gMeme.lines.push(line)
     gMeme.selectedLineIdx = gMeme.lines.length - 1
     return line
 }
+
 
 function removeLine(idx = gMeme.selectedLineIdx) {
     if (!gMeme.lines.length) return
@@ -43,6 +44,10 @@ function updateLinePos(idx, x, y) {
     gMeme.lines[idx].x = x
     gMeme.lines[idx].y = y
 }
+function updateLineColor(color, idx = gMeme.selectedLineIdx) {
+    if (!gMeme.lines[idx]) return
+    gMeme.lines[idx].color = color
+}
 
 
 window.getMeme = getMeme
@@ -51,3 +56,4 @@ window.removeLine = removeLine
 window.setSelectedLineIdx = setSelectedLineIdx
 window.updateLineTxt = updateLineTxt
 window.updateLinePos = updateLinePos
+window.updateLineColor = updateLineColor
