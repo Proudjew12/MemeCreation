@@ -17,3 +17,23 @@
     font-family: fa-brands-400;
     src: url('/fonts/fa/fa-brands-400.woff2') format('woff2');
 }
+
+@font-face {
+    font-family: 'anton';
+    src: url('/fonts/Anton/Anton-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'bangers';
+    src: url('/fonts/Bangers/Bangers-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'luckiest-guy';
+    src: url('/fonts/Luckiest_Guy/LuckiestGuy-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'fjalla-one';
+    src: url('/fonts/Fjalla_One/FjallaOne-Regular.ttf') format('truetype');
+}

@@ -38,6 +38,10 @@ function onInitMeme() {
             onDeselectLine()
         }
     })
+
+    document.getElementById('font-family')
+        .addEventListener('input', onFontChange)
+
 }
 
 function onAddLine() {
@@ -96,6 +100,7 @@ function onCreateFloating(line, idx) {
     el.style.cursor = 'move'
     el.style.color = line.color
     el.style.fontSize = line.size + 'px'
+    el.style.fontFamily = line.font || 'impact'
     el.style.textAlign = line.align || 'center'
 
     el.addEventListener('click', () => {
@@ -116,7 +121,9 @@ function onSelectLine(idx) {
     setSelectedLineIdx(idx)
     const meme = getMeme()
 
+    document.getElementById('font-family').value = meme.lines[idx]?.font || 'impact'
     document.getElementById('fill-color').value = meme.lines[idx]?.color || '#ffffff'
+
     gElInput.value = meme.lines[idx]?.txt || ''
 
     gOverlayEls.forEach(el => el && (el.style.outline = 'none'))
@@ -211,6 +218,17 @@ function enableSizeButtons() {
 function disableSizeButtons() {
     document.getElementById('btn-size-plus').disabled = true
     document.getElementById('btn-size-minus').disabled = true
+}
+function onFontChange(e) {
+    const meme = getMeme()
+    const font = e.target.value
+    const idx = meme.selectedLineIdx
+    if (idx === -1) return
+
+    updateLineFont(font, idx)
+
+    const el = gOverlayEls[idx]
+    if (el) el.style.fontFamily = font
 }
 
 window.onInitMeme = onInitMeme

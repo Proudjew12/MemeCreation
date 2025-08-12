@@ -17,7 +17,16 @@ function getMeme() {
 }
 
 function addLine(txt, color = 'red') {
-    const line = { txt, size: 20, color, align: 'center', x: 40, y: 40 }
+    const line = {
+        txt,
+        size: 20,
+        color,
+        align: 'center',
+        font: 'impact',
+        x: 40,
+        y: 40
+    }
+
     gMeme.lines.push(line)
     gMeme.selectedLineIdx = gMeme.lines.length - 1
     return line
@@ -57,6 +66,10 @@ function updateLineAlign(align, idx = gMeme.selectedLineIdx) {
     if (!gMeme.lines[idx]) return
     gMeme.lines[idx].align = align
 }
+function updateLineFont(font, idx = gMeme.selectedLineIdx) {
+    if (!gMeme.lines[idx]) return
+    gMeme.lines[idx].font = font
+}
 
 
 
@@ -69,4 +82,6 @@ window.updateLinePos = updateLinePos
 window.updateLineColor = updateLineColor
 window.updateLineSize = updateLineSize
 window.updateLineAlign = updateLineAlign
+window.updateLineFont = updateLineFont
+
 
