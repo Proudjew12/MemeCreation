@@ -1,4 +1,3 @@
-a
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +11,6 @@ a
 </head>
 
 <body onload="onRenderGallery()" class="main-layout">
-
     <header class="main-header flex space-between align-center">
         <div class="logo">Logo</div>
         <nav class="main-nav main-nav--simple flex" aria-label="Main">
@@ -23,25 +21,25 @@ a
         </nav>
     </header>
 
-    <main class="main-layout">
-        <section class="cards-layout">
-            <article class="card">
-                <h1 class="gallery-title">Choose a Meme Image</h1>
-                <div class="gallery-grid" id="gallery-container">
-
-                </div>
-            </article>
+    <main>
+        <section class="gallery-search flex">
+            <div class="search-bar flex align-center">
+                <input type="search" id="search-input" class="search-input" placeholder="Search"
+                    aria-label="Search memes" />
+                <button id="search-btn" class="search-icon" aria-label="Search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </div>
         </section>
+
     </main>
 
     <footer></footer>
-
 
     <script src="JS/Storage/localStorage.js"></script>
     <script src="JS/Services/utilService.js"></script>
     <script src="JS/Services/gallaryServices.js"></script>
     <script src="JS/gallery-controller.js"></script>
-
 </body>
 
 </html>

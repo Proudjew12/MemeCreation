@@ -4,6 +4,3 @@ function onRenderGallery() {
 
 }
 
-function onImgSelect() {
-
-}

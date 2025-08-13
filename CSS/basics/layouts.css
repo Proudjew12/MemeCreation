@@ -12,13 +12,12 @@
     grid-column: 1 / -1;
 }
 
+
 .cards-layout {
-    display: grid;
-    gap: 80px;
-    padding: 16px;
-    padding-block: 30px 80px;
-    border-inline: 0.5px solid #e1e0e0;
+    padding-inline: 0;
+    border: none;
 }
+
 
 .card {
     display: grid;
