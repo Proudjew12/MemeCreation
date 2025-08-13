@@ -1,9 +1,13 @@
 .main-header {
-    background: linear-gradient(90deg, #0ea5b5 0%, #22c55e 100%);
+    background: linear-gradient(to right, #00f2fe, #0fd850);
     color: #fff;
-    padding: 14px 24px;
+
+    padding: var(--space-sm) var(--space-lg);
     border-radius: 9999px;
     margin: 16px;
+    height: 60px;
+    box-sizing: border-box;
+
     box-shadow:
         inset 0 8px 24px rgba(255, 255, 255, .06),
         0 6px 18px rgba(0, 0, 0, .25);
