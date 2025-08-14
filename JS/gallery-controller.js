@@ -1,43 +1,47 @@
 'use strict'
 
 function onRenderGallery() {
+    onRenderTags()
+    onRenderGalleryImages()
+}
 
-    const tags = document.querySelectorAll('.tag');
+function onRenderTags() {
+    const tags = document.querySelectorAll('.tag')
     tags.forEach(tag => {
-        const randomSize = Math.floor(Math.random() * 10) + 14; // 14px to 24px
-        tag.style.fontSize = `${randomSize}px`;
+        const randomSize = Math.floor(Math.random() * 10) + 14
+        tag.style.fontSize = `${randomSize}px`
 
         tag.addEventListener('click', () => {
             tags.forEach(t => t.classList.remove('active'))
             tag.classList.add('active')
-        });
-    });
+        })
+    })
+}
 
+function onRenderGalleryImages() {
     const elGallery = document.getElementById('gallery-container')
+    elGallery.innerHTML = ''
 
-    const folders = {
-        CartoonMan: 39,
-        Dog: 5,
-        Cat: 3,
-        Clown: 13,
-        Man: 7,
-        Women: 8,
-        Pepe: 24,
-        Spongbob: 17,
-    }
+    const folders = getGalleryFolders()
 
     for (const folder in folders) {
-        const count = folders[folder]
-        for (let i = 1; i <= count; i++) {
+        const images = getImagesForFolder(folder, folders[folder])
+
+        images.forEach(image => {
             const img = document.createElement('img')
-            img.src = `img/${folder}/${folder} ${i}.jpg`
-            img.alt = `${folder} ${i}`
+            img.src = image.src
+            img.alt = image.alt
 
             const wrapper = document.createElement('div')
             wrapper.classList.add('gallery-item')
             wrapper.appendChild(img)
 
+            img.addEventListener('click', () => {
+                localStorage.setItem('selected-img', image.src)
+                window.location.href = 'index.html'
+            })
+
             elGallery.appendChild(wrapper)
-        }
+        })
     }
 }

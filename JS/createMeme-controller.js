@@ -7,6 +7,18 @@ let gOverlayEls = []
 function onInitMeme() {
     gElBoard = document.querySelector('.meme-board')
     gElInput = document.getElementById('line-input')
+    gElBoard = document.querySelector('.meme-board')
+    gElInput = document.getElementById('line-input')
+
+    const savedImgUrl = localStorage.getItem('selected-img')
+    if (savedImgUrl) {
+        const imgEl = document.getElementById('meme-image')
+        imgEl.src = savedImgUrl
+        imgEl.onload = () => {
+            drawImageOnCanvas(imgEl)
+            localStorage.removeItem('selected-img') // Clean up
+        }
+    }
 
     document.getElementById('btn-add')?.addEventListener('click', onAddLine)
     document.getElementById('btn-delete')?.addEventListener('click', onDeleteLine)
@@ -43,6 +55,14 @@ function onInitMeme() {
         .addEventListener('input', onFontChange)
 
 }
+
+function drawImageOnCanvas(img) {
+    const canvas = document.getElementById('meme-canvas')
+    const ctx = canvas.getContext('2d')
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
+}
+
 
 function onAddLine() {
     const txt = gElInput.value.trim()
