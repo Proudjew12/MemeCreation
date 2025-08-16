@@ -71,6 +71,29 @@ function updateLineFont(font, idx = gMeme.selectedLineIdx) {
     gMeme.lines[idx].font = font
 }
 
+function uploadImg(imgDataUrl, onSuccess) {
+    const CLOUD_NAME = 'webify'
+    const UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`
+    const UPLOAD_PRESET = 'webify'
+
+    const formData = new FormData()
+    formData.append('file', imgDataUrl)
+    formData.append('upload_preset', UPLOAD_PRESET)
+
+    fetch(UPLOAD_URL, {
+        method: 'POST',
+        body: formData,
+    })
+        .then(res => res.json())
+        .then(data => {
+            console.log('Cloudinary uploaded:', data.secure_url)
+            onSuccess(data.secure_url)
+        })
+        .catch(err => {
+            console.error('Upload failed:', err)
+            alert('Could not upload meme. Try downloading instead.')
+        })
+}
 
 
 window.getMeme = getMeme

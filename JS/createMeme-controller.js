@@ -41,6 +41,16 @@ function onInitMeme() {
     document.getElementById('btn-size-minus')
         .addEventListener('click', () => onSizeChange(-2))
 
+    document.getElementById('btn-download')
+        .addEventListener('click', onDownloadMeme)
+
+    document.getElementById('btn-share')
+        .addEventListener('click', onShareMeme)
+
+    document.getElementById('btn-share')
+        .addEventListener('click', onShareMeme)
+
+
     gElInput.addEventListener('input', onInputChange)
 
     onRebuildOverlays()
@@ -59,9 +69,36 @@ function onInitMeme() {
 function drawImageOnCanvas(img) {
     const canvas = document.getElementById('meme-canvas')
     const ctx = canvas.getContext('2d')
+
+    // Match canvas size to the image’s natural size
+    canvas.width = img.naturalWidth
+    canvas.height = img.naturalHeight
+
     ctx.clearRect(0, 0, canvas.width, canvas.height)
-    ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
+
+    // Center the image and keep ratio
+    const imgRatio = img.naturalWidth / img.naturalHeight
+    const canvasRatio = canvas.width / canvas.height
+
+    let renderWidth, renderHeight, offsetX, offsetY
+
+    if (imgRatio > canvasRatio) {
+        // Image is wider → fit width
+        renderWidth = canvas.width
+        renderHeight = renderWidth / imgRatio
+        offsetX = 0
+        offsetY = (canvas.height - renderHeight) / 2
+    } else {
+        // Image is taller → fit height
+        renderHeight = canvas.height
+        renderWidth = renderHeight * imgRatio
+        offsetX = (canvas.width - renderWidth) / 2
+        offsetY = 0
+    }
+
+    ctx.drawImage(img, offsetX, offsetY, renderWidth, renderHeight)
 }
+
 
 
 function onAddLine() {
@@ -163,10 +200,37 @@ function onDeselectLine() {
     disableSizeButtons()
 }
 
+function onCreateFloating(line, idx) {
+    const el = document.createElement('div')
+    el.className = 'overlay-text'
+    el.textContent = line.txt
+    el.style.left = (line.x || 40) + 'px'
+    el.style.top = (line.y || 40) + 'px'
+    el.style.color = line.color
+    el.style.fontSize = line.size + 'px'
+    el.style.fontFamily = line.font || 'impact'
+    el.style.textAlign = line.align || 'center'
+    el.style.position = 'absolute'
+    el.style.cursor = 'move'
+
+    el.addEventListener('mousedown', ev => {
+        ev.preventDefault() // 🛑 stops text highlight
+        onDragStart(ev, el, idx)
+    })
+
+    gElBoard.appendChild(el)
+    gOverlayEls[idx] = el
+}
+
+// only attach once
+document.addEventListener('mousemove', onDragMove)
+document.addEventListener('mouseup', onDragEnd)
+
 function onDragStart(ev, el, idx) {
     gDrag.isDown = true
-    gDrag.startX = ev.clientX - el.offsetLeft
-    gDrag.startY = ev.clientY - el.offsetTop
+    const boardRect = gElBoard.getBoundingClientRect()
+    gDrag.startX = ev.pageX - boardRect.left - el.offsetLeft
+    gDrag.startY = ev.pageY - boardRect.top - el.offsetTop
     gDrag.el = el
     gDrag.lineIdx = idx
     onSelectLine(idx)
@@ -176,9 +240,10 @@ function onDragMove(ev) {
     if (!gDrag.isDown || !gDrag.el) return
     const boardRect = gElBoard.getBoundingClientRect()
 
-    let x = ev.clientX - gDrag.startX - boardRect.left
-    let y = ev.clientY - gDrag.startY - boardRect.top
+    let x = ev.pageX - boardRect.left - gDrag.startX
+    let y = ev.pageY - boardRect.top - gDrag.startY
 
+    // clamp
     const maxX = gElBoard.clientWidth - gDrag.el.offsetWidth
     const maxY = gElBoard.clientHeight - gDrag.el.offsetHeight
     x = Math.max(0, Math.min(x, maxX))
@@ -195,6 +260,7 @@ function onDragEnd() {
     gDrag.el = null
     gDrag.lineIdx = -1
 }
+
 
 function onColorChange(e) {
     const meme = getMeme()
@@ -251,5 +317,121 @@ function onFontChange(e) {
     const el = gOverlayEls[idx]
     if (el) el.style.fontFamily = font
 }
+function onDownloadMeme(ev) {
+    ev.preventDefault()
+
+    const elBoard = document.querySelector('.meme-board')
+    const canvasEl = document.getElementById('meme-canvas')
+    const overlayEls = document.querySelectorAll('.overlay-text')
+
+    // Hide the canvas (we don't want duplicate content)
+    canvasEl.style.display = 'none'
+
+    // Make sure overlays don't have any unnecessary styles
+    overlayEls.forEach(el => el.classList.add('no-reflection'))
+
+    html2canvas(elBoard, {
+        backgroundColor: null,
+        useCORS: true,
+        scale: 1, // Don't auto-scale — match DOM size
+        logging: false,
+        allowTaint: true
+    }).then(canvas => {
+        const link = document.createElement('a')
+        link.download = 'my-meme.jpg'
+        link.href = canvas.toDataURL('image/jpeg')
+        link.click()
+
+        // Restore canvas + overlay
+        canvasEl.style.display = 'block'
+        overlayEls.forEach(el => el.classList.remove('no-reflection'))
+    }).catch(err => {
+        console.error('Download failed:', err)
+    })
+}
+
+
+
+
+function onShareMeme(ev) {
+    ev.preventDefault()
+
+    const elBoard = document.querySelector('.meme-board')
+    const canvasEl = document.getElementById('meme-canvas')
+    const overlayEls = document.querySelectorAll('.overlay-text')
+
+    canvasEl.style.display = 'none'
+    overlayEls.forEach(el => el.classList.add('no-reflection'))
+
+    html2canvas(elBoard, { backgroundColor: null, useCORS: true, scale: 1 })
+        .then(canvas => {
+            const exportCanvas = document.createElement('canvas')
+            exportCanvas.width = canvas.width
+            exportCanvas.height = canvas.height
+            const ctx = exportCanvas.getContext('2d')
+            ctx.fillStyle = '#fff'
+            ctx.fillRect(0, 0, exportCanvas.width, exportCanvas.height)
+            ctx.drawImage(canvas, 0, 0)
+
+            uploadImg(exportCanvas.toDataURL('image/jpeg', 0.95), (url) => {
+                const encoded = encodeURIComponent(url)
+                document.getElementById('share-result').innerHTML = `
+                    <a href="${url}" target="_blank">View uploaded meme</a>
+                    <p>URL: ${url}</p>
+                    <button class="btn-facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${encoded}', '_blank')">
+                        Share on Facebook
+                    </button>`
+            })
+
+            canvasEl.style.display = 'block'
+            overlayEls.forEach(el => el.classList.remove('no-reflection'))
+        })
+        .catch(err => console.error('Share failed:', err))
+}
+
+
+
+
+
+
+function onRenderMemeToCanvas() {
+    const canvas = document.getElementById('meme-canvas')
+    const ctx = canvas.getContext('2d')
+    const img = document.getElementById('meme-image')
+    const meme = getMeme()
+
+    const board = document.querySelector('.meme-board')
+    if (!img || !img.src || !board) return
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
+
+    const boardRect = board.getBoundingClientRect()
+
+    meme.lines.forEach(line => {
+        const scaledX = (line.x / boardRect.width) * canvas.width
+        const scaledY = (line.y / boardRect.height) * canvas.height
+
+        ctx.font = `${line.size}px ${line.font || 'Impact'}`
+        ctx.fillStyle = line.color || 'white'
+        ctx.textAlign = line.align || 'center'
+        ctx.textBaseline = 'top'
+
+
+        ctx.strokeStyle = 'black'
+        ctx.lineWidth = Math.max(2, line.size / 15)
+        ctx.strokeText(line.txt, scaledX, scaledY)
+        ctx.fillText(line.txt, scaledX, scaledY)
+    })
+}
+
+
+
+
+
+
+
+
 
 window.onInitMeme = onInitMeme
+

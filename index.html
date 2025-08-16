@@ -74,8 +74,8 @@
 
                         <div class="actions flex space-between align-center">
                             <button type="button" id="btn-share" title="Share" aria-label="Share">Share</button>
-                            <button type="button" id="btn-download" title="Download"
-                                aria-label="Download">Download</button>
+                            <button id="btn-download" title="Download" aria-label="Download">Download</button>
+
                         </div>
                     </aside>
                 </form>
@@ -83,7 +83,10 @@
         </section>
     </main>
 
-    <footer></footer>
+    <footer>
+        <section id="share-result" class="share-container"></section>
+
+    </footer>
 
     <script src="JS/Storage/localStorage.js"></script>
     <script src="JS/Services/utilService.js"></script>
@@ -92,6 +95,7 @@
     <script src="JS/createMeme-controller.js"></script>
     <script src="JS/gallery-controller.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
     <script src="https://kit.fontawesome.com/626cf0cfad.js" crossorigin="anonymous"></script>
 </body>
 

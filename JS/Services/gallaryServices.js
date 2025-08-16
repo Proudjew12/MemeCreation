@@ -2,7 +2,7 @@
 
 function getGalleryFolders() {
     return {
-        CartoonMan: 39,
+        CartoonMan: 38,
         Dog: 5,
         Cat: 3,
         Clown: 13,
