@@ -2,17 +2,18 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Meme Creation</title>
-    <link rel="stylesheet" href="CSS/styles.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meme Creator</title>
+    <link rel="stylesheet" href="CSS/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 </head>
 
 <body onload="onInitMeme()" class="main-layout">
+
     <header class="main-header flex space-between align-center">
-        <div class="logo">Logo</div>
-        <nav class="main-nav main-nav--simple flex" aria-label="Main">
+        <div class="logo">MemeGen</div>
+        <nav class="main-nav main-nav--simple">
             <ul class="main-nav-list clean-list flex">
                 <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="#">About</a></li>
@@ -23,69 +24,59 @@
     <main class="main-layout">
         <section class="cards-layout">
             <article class="card">
-                <section class="meme-stage flex center">
+
+                <div class="meme-stage flex center">
                     <div class="meme-board">
-                        <canvas id="meme-canvas" width="1080" height="1080"></canvas>
-                        <img id="meme-image" alt="" hidden>
+                        <canvas id="meme-canvas"></canvas>
+                        <img id="meme-image" hidden>
                     </div>
-                </section>
+                </div>
 
-                <form id="text-form" action="" novalidate>
-                    <aside class="meme-controls flex column">
-                        <div class="control-head">
-                            <input id="line-input" class="control-input" type="text" placeholder="Type and press ＋"
-                                autocomplete="off" aria-label="Meme text">
-                        </div>
+                <div class="meme-controls flex column">
 
-                        <div class="control-row flex align-center justify-center">
-                            <button type="button" id="btn-add" title="Add line" aria-label="Add line">＋</button>
-                            <button type="button" id="btn-delete" title="Delete selected line"
-                                aria-label="Delete selected line">🗑</button>
-                        </div>
+                    <div class="control-head">
+                        <input id="line-input" class="control-input" type="text" placeholder="Type and press ＋"
+                            autocomplete="off">
+                    </div>
 
-                        <div class="control-row flex align-center justify-center">
-                            <button type="button" id="btn-size-plus" title="Increase text size"
-                                aria-label="Increase text size">A+</button>
-                            <button type="button" id="btn-size-minus" title="Decrease text size"
-                                aria-label="Decrease text size">A−</button>
-                            <button type="button" id="btn-align-left" title="Align left"
-                                aria-label="Align left">⇚</button>
-                            <button type="button" id="btn-align-center" title="Align center"
-                                aria-label="Align center">≡</button>
-                            <button type="button" id="btn-align-right" title="Align right"
-                                aria-label="Align right">⇛</button>
-                        </div>
+                    <div class="control-row flex justify-center align-center">
+                        <button type="button" id="btn-add">＋</button>
+                        <button type="button" id="btn-delete">🗑</button>
+                    </div>
 
-                        <div class="control-row flex align-center justify-center">
-                            <select id="font-family" aria-label="Font family">
-                                <option value="impact" selected>IMPACT</option>
-                                <option value="lato-bold">Lato Bold</option>
-                                <option value="eurofurence">Eurofurence</option>
-                                <option value="anton">Anton</option>
-                                <option value="bangers">Bangers</option>
-                                <option value="luckiest-guy">Luckiest Guy</option>
-                                <option value="fjalla-one">Fjalla One</option>
+                    <div class="control-row flex justify-center align-center">
+                        <button type="button" id="btn-size-plus">A+</button>
+                        <button type="button" id="btn-size-minus">A−</button>
+                        <button type="button" id="btn-align-left">⇚</button>
+                        <button type="button" id="btn-align-center">≡</button>
+                        <button type="button" id="btn-align-right">⇛</button>
+                    </div>
 
-                            </select>
+                    <div class="control-row flex justify-center align-center">
+                        <select id="font-family">
+                            <option value="impact" selected>Impact</option>
+                            <option value="lato-bold">Lato Bold</option>
+                            <option value="eurofurence">Eurofurence</option>
+                            <option value="anton">Anton</option>
+                            <option value="bangers">Bangers</option>
+                            <option value="luckiest-guy">Luckiest Guy</option>
+                            <option value="fjalla-one">Fjalla One</option>
+                        </select>
+                        <input id="fill-color" type="color" value="#ffffff">
+                    </div>
 
-                            <input id="fill-color" type="color" title="Fill color" aria-label="Fill color"
-                                value="#ffffff">
-                        </div>
+                    <div class="actions flex space-between align-center">
+                        <button type="button" id="btn-share">Share</button>
+                        <button id="btn-download">Download</button>
+                    </div>
+                </div>
 
-                        <div class="actions flex space-between align-center">
-                            <button type="button" id="btn-share" title="Share" aria-label="Share">Share</button>
-                            <button id="btn-download" title="Download" aria-label="Download">Download</button>
-
-                        </div>
-                    </aside>
-                </form>
             </article>
         </section>
     </main>
 
     <footer>
-        <section id="share-result" class="share-container"></section>
-
+        <div id="share-result" class="share-container"></div>
     </footer>
 
     <script src="JS/Storage/localStorage.js"></script>
@@ -94,7 +85,6 @@
     <script src="JS/Services/gallaryServices.js"></script>
     <script src="JS/createMeme-controller.js"></script>
     <script src="JS/gallery-controller.js"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
     <script src="https://kit.fontawesome.com/626cf0cfad.js" crossorigin="anonymous"></script>
 </body>
