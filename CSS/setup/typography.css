@@ -1,39 +1,39 @@
 @font-face {
-    font-family: eurofurence;
-    src: url('/fonts/eurofurence/eurofurence-Regular.ttf') format('truetype');
+    font-family: "Eurofurence";
+    src: url("/fonts/eurofurence/eurofurence-Regular.ttf") format("truetype");
 }
 
 @font-face {
-    font-family: lato-bold;
-    src: url('/fonts/lato/Lato-Bold.ttf') format('truetype');
+    font-family: "Lato Bold";
+    src: url("/fonts/lato/Lato-Bold.ttf") format("truetype");
 }
 
 @font-face {
-    font-family: lato-regular;
-    src: url('/fonts/lato/Lato-Regular.ttf') format('truetype');
+    font-family: "Lato Regular";
+    src: url("/fonts/lato/Lato-Regular.ttf") format("truetype");
 }
 
 @font-face {
-    font-family: fa-brands-400;
-    src: url('/fonts/fa/fa-brands-400.woff2') format('woff2');
+    font-family: "Anton";
+    src: url("/fonts/Anton/Anton-Regular.ttf") format("truetype");
 }
 
 @font-face {
-    font-family: anton;
-    src: url('/fonts/Anton/Anton-Regular.ttf') format('truetype');
+    font-family: "Bangers";
+    src: url("/fonts/Bangers/Bangers-Regular.ttf") format("truetype");
 }
 
 @font-face {
-    font-family: bangers;
-    src: url('/fonts/Bangers/Bangers-Regular.ttf') format('truetype');
+    font-family: "Luckiest Guy";
+    src: url("/fonts/Luckiest_Guy/LuckiestGuy-Regular.ttf") format("truetype");
 }
 
 @font-face {
-    font-family: luckiest-guy;
-    src: url('/fonts/Luckiest_Guy/LuckiestGuy-Regular.ttf') format('truetype');
+    font-family: "Fjalla One";
+    src: url("/fonts/Fjalla_One/FjallaOne-Regular.ttf") format("truetype");
 }
 
 @font-face {
-    font-family: fjalla-one;
-    src: url('/fonts/Fjalla_One/FjallaOne-Regular.ttf') format('truetype');
+    font-family: "Font Awesome Brands";
+    src: url("/fonts/fa/fa-brands-400.woff2") format("woff2");
 }

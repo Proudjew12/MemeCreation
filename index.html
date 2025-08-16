@@ -7,6 +7,10 @@
     <title>Meme Creator</title>
     <link rel="stylesheet" href="CSS/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Bangers&family=Fjalla+One&family=Luckiest+Guy&family=Lato:wght@700&display=swap"
+        rel="stylesheet">
+
 </head>
 
 <body onload="onInitMeme()" class="main-layout">
@@ -52,14 +56,15 @@
                     </div>
 
                     <div class="control-row flex justify-center align-center">
-                        <select id="font-family">
-                            <option value="impact" selected>Impact</option>
-                            <option value="lato-bold">Lato Bold</option>
-                            <option value="eurofurence">Eurofurence</option>
-                            <option value="anton">Anton</option>
-                            <option value="bangers">Bangers</option>
-                            <option value="luckiest-guy">Luckiest Guy</option>
-                            <option value="fjalla-one">Fjalla One</option>
+                        <select id="font-family" aria-label="Font family">
+                            <option value="Impact" selected>Impact</option>
+                            <option value="Lato Bold">Lato Bold</option>
+                            <option value="Lato Regular">Lato Regular</option>
+                            <option value="Eurofurence">Eurofurence</option>
+                            <option value="Anton">Anton</option>
+                            <option value="Bangers">Bangers</option>
+                            <option value="Luckiest Guy">Luckiest Guy</option>
+                            <option value="Fjalla One">Fjalla One</option>
                         </select>
                         <input id="fill-color" type="color" value="#ffffff">
                     </div>
