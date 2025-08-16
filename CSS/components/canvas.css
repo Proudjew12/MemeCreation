@@ -5,16 +5,12 @@
     box-shadow: 0 8px 18px rgba(0, 0, 0, .25);
     outline: 2px solid rgba(255, 255, 255, .06);
     outline-offset: -6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     height: 100%;
 }
 
 .meme-board {
     position: relative;
     width: 100%;
-
     overflow: hidden;
 }
 
@@ -23,22 +19,21 @@
     visibility: hidden;
     position: absolute;
     width: 0;
-    height: 0
+    height: 0;
 }
 
 .overlay-text {
     position: absolute;
-    color: white;
+    max-width: 100%;
+    color: #fff;
     font-family: Impact, sans-serif;
     font-size: 2rem;
     font-weight: 700;
     text-align: center;
     white-space: pre-wrap;
+    word-break: break-word;
     cursor: move;
     user-select: none;
-    max-width: 100%;
-    word-break: break-word;
-
     text-shadow:
         2px 2px 0 #000,
         -2px 2px 0 #000,

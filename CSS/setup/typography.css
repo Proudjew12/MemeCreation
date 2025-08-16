@@ -19,21 +19,21 @@
 }
 
 @font-face {
-    font-family: 'anton';
+    font-family: anton;
     src: url('/fonts/Anton/Anton-Regular.ttf') format('truetype');
 }
 
 @font-face {
-    font-family: 'bangers';
+    font-family: bangers;
     src: url('/fonts/Bangers/Bangers-Regular.ttf') format('truetype');
 }
 
 @font-face {
-    font-family: 'luckiest-guy';
+    font-family: luckiest-guy;
     src: url('/fonts/Luckiest_Guy/LuckiestGuy-Regular.ttf') format('truetype');
 }
 
 @font-face {
-    font-family: 'fjalla-one';
+    font-family: fjalla-one;
     src: url('/fonts/Fjalla_One/FjallaOne-Regular.ttf') format('truetype');
 }

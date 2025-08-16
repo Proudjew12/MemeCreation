@@ -1,5 +1,5 @@
 .tag-list {
-    background-color: #5a5a5a;
+    background: #5a5a5a;
     border-radius: 9999px;
     padding: 6px 16px;
     gap: 12px;
@@ -10,14 +10,14 @@
     font-size: 1rem;
     cursor: pointer;
     user-select: none;
-    transition: color 0.2s ease;
+    transition: color .2s ease;
 }
 
-.tag:hover {
+.tag:hover,
+.tag.active {
     color: #fff;
 }
 
 .tag.active {
-    color: #fff;
     font-weight: bold;
 }

@@ -4,8 +4,8 @@
     border: 1px solid rgba(255, 255, 255, .08);
     border-radius: 14px;
     padding: 16px;
-    gap: 12px;
     font-size: 15px;
+    gap: 12px;
 }
 
 .control-head .control-input {
@@ -71,13 +71,13 @@
 }
 
 .meme-controls input[type="color"] {
+    background: none;
     border: 1px solid rgba(0, 0, 0, .08);
     border-radius: 50%;
-    padding: 0;
     width: 42px;
     height: 42px;
+    padding: 0;
     cursor: pointer;
-    background: none;
 }
 
 .meme-controls input[type="color"]::-webkit-color-swatch,

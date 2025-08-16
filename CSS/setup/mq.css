@@ -1,14 +1,13 @@
-/* ===== MOBILE (≤900px) ===== */
+/* MOBILE (max-width: 900px) */
 @media (max-width: 900px) {
     .main-nav:not(.main-nav--simple) {
         position: fixed;
         top: 50px;
         left: 0;
         width: 100%;
-        background-color: var(--clr-primary);
+        background: var(--clr-primary);
         display: grid;
         grid-template-rows: 0fr;
-        align-content: end;
         align-items: end;
         overflow: hidden;
         transition: grid-template-rows .3s ease;
@@ -16,8 +15,8 @@
     }
 
     .main-nav:not(.main-nav--simple)>ul {
-        overflow: hidden;
         flex-direction: column;
+        overflow: hidden;
     }
 
     .main-nav:not(.main-nav--simple) li {
@@ -29,14 +28,14 @@
     }
 }
 
-/* ===== SMALL (≥640px) ===== */
+/* SMALL SCREENS (min-width: 640px) */
 @media (min-width: 640px) {
     .main-layout {
         grid-template-columns: minmax(16px, 1fr) minmax(auto, 600px) minmax(16px, 1fr);
     }
 }
 
-/* ===== TABLET (≥768px) ===== */
+/* MEDIUM SCREENS (min-width: 768px) */
 @media (min-width: 768px) {
     .main-layout {
         grid-template-columns: minmax(16px, 1fr) minmax(auto, 860px) minmax(16px, 1fr);
@@ -48,7 +47,7 @@
     }
 }
 
-/* ===== MEDIUM (≥900px) ===== */
+/* DESKTOP (min-width: 900px) */
 @media (min-width: 900px) {
     .main-nav:not(.main-nav--simple) .main-nav-list a {
         display: block;
@@ -57,14 +56,14 @@
     }
 }
 
-/* ===== MEDIUM NARROW (900px–1100px) ===== */
+/* TABLET LANDSCAPE (min-width: 900px and max-width: 1100px) */
 @media (min-width: 900px) and (max-width: 1100px) {
     html {
         font-size: 14px;
     }
 }
 
-/* ===== LARGE (≥1100px) ===== */
+/* LARGE DESKTOP (min-width: 1100px) */
 @media (min-width: 1100px) {
     .main-layout {
         grid-template-columns: minmax(16px, 1fr) minmax(auto, 1060px) minmax(16px, 1fr);
