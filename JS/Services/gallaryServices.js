@@ -1,6 +1,12 @@
 'use strict'
 
-function getGalleryFolders() {
+const galleryService = {
+    getFolders,
+    getImagesForFolder,
+    getAllImages
+}
+
+function getFolders() {
     return {
         CartoonMan: 38,
         Dog: 5,
@@ -9,7 +15,7 @@ function getGalleryFolders() {
         Man: 23,
         Women: 8,
         Pepe: 24,
-        SpongeBob: 17,
+        SpongeBob: 17
     }
 }
 
@@ -17,22 +23,21 @@ function getImagesForFolder(folderName, count) {
     const images = []
     for (let i = 1; i <= count; i++) {
         images.push({
-            folder: folderName,
+            folder: folderName.toLowerCase(),
             name: `${folderName} ${i}.jpg`,
-            src: `img/${folderName}/${folderName} ${i}.jpg`,
+            src: `img/${folderName}/${folderName} ${i}.jpg`
         })
     }
     return images
 }
 
-function getAllGalleryImages() {
-    const folders = getGalleryFolders()
-    const allImages = []
-
+function getAllImages() {
+    const folders = getFolders()
+    const all = []
     for (const folder in folders) {
-        const images = getImagesForFolder(folder, folders[folder])
-        allImages.push(...images)
+        all.push(...getImagesForFolder(folder, folders[folder]))
     }
-
-    return allImages
+    return all
 }
+
+window.galleryService = galleryService
