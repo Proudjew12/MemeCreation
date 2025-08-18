@@ -8,19 +8,21 @@ function onInitMeme() {
     gElBoard = document.querySelector('.meme-board')
     gElInput = document.getElementById('line-input')
 
-    const savedImgUrl = localStorage.getItem('selected-img')
+    const savedImgUrl = loadFromStorage('selected-img')
     if (savedImgUrl) {
         const imgEl = document.getElementById('meme-image')
         imgEl.src = savedImgUrl
         imgEl.onload = () => {
             memeService.drawImageOnCanvas(imgEl)
-            localStorage.removeItem('selected-img')
+            removeFromStorage('selected-img')
         }
     }
 
     bindEditorEvents()
     onRebuildOverlays()
 }
+
+
 
 function bindEditorEvents() {
     document.getElementById('btn-add').addEventListener('click', onAddLine)

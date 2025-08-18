@@ -65,6 +65,6 @@ function onRenderGalleryImages() {
 }
 
 function onSelectImage(src) {
-    localStorage.setItem('selected-img', src)
+    saveToStorage('selected-img', src)
     window.location.href = 'index.html'
 }
